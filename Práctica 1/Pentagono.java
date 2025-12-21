@@ -9,13 +9,22 @@ public class Pentagono extends PoligonoRegular {
         super(LADOS, longitudLado, TIPOFIGURA);
     }
 
+    /* Calcula y devulve el area del pentagono 
+    * @return double - Area del pentagono
+    */
     @Override
     public double calcularArea() {
-        /*Aquí va tu código*/
+        double apotema = this.calcularApotema();
+        return (5 * this.longitudLado * apotema) / 2;
     }
 
+
+    /* Calcula y devulve el area del pentagono 
+    * Ya que es pentagno regular tenemos que el apotema siempre es LongitudLado / 1.45
+    * @return double - Area del pentagono
+    */
     public double calcularApotema(){
-        /*Aquí va tu código*/
+        return this.longitudLado / 1.45; 
     }
 
 }

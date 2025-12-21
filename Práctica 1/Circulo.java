@@ -7,14 +7,20 @@ public class Circulo implements Figura {
         this.radio = radio;
     }
 
+    /* Calcula y devulve el area del circulo 
+    * @return double - Area del circulo
+    */
     @Override
     public double calcularArea() {
-        /*Aquí va tu código*/
+        return this.PI * Math.pow(radio, 2);
     }
 
+    /* Calcula y devulve el perimetro del circulo 
+    * @return double - Perimetro del circulo
+    */
     @Override
     public double calcularPerimetro() {
-        /*Aquí va tu código*/
+        return this.PI * radio * 2;
     }
 
     public String toString(){

@@ -6,8 +6,11 @@ public class Cuadrado extends PoligonoRegular {
         super(LADOS, longitudLado, TIPOFIGURA);
     }
 
+    /* Calcula y devulve el area del cuadrado 
+    * @return double - Area del cuadrado
+    */
     @Override
     public double calcularArea() {
-        /*Aquí va tu código*/
+        return Math.pow(super.longitudLado, 2);
     }
 }

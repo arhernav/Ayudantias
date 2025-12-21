@@ -9,11 +9,15 @@ public abstract class PoligonoRegular implements Figura{
         this.tipoFigura = tipoFigura;
     }
 
+    /* Calcula y devulve el perimetro del poligono 
+    * @return double - Area del poligono
+    */
     public double calcularPerimetro() {
-        return numeroLados * longitudLado
+        return numeroLados * longitudLado;
     }
 
     public abstract double calcularArea();
+
 
     public String toString(){
         return "El tipo de figura es: " + this.tipoFigura + 
