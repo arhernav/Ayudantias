@@ -4,8 +4,8 @@ public class MainConjuntos {
         String[] frutas = {"Manzana", "Banana", "Naranja"};
         String[] otrasFrutas = {"Banana", "Kiwi"};
 
-        Conjunto<String> conjunto1 = new Conjunto<>(frutas);
-        Conjunto<String> conjunto2 = new Conjunto<>(otrasFrutas);
+        Conjunto<String> conjunto1 = new ConjuntoArreglo<>(frutas);
+        Conjunto<String> conjunto2 = new ConjuntoArreglo<>(otrasFrutas);
 
         System.out.println("Conjunto 1 contiene a 'Banana': " + conjunto1.pertenece("Banana"));
         System.out.println("Conjunto 1 contiene a 'Kiwi': " + conjunto1.pertenece("Kiwi"));
@@ -27,8 +27,8 @@ public class MainConjuntos {
         Integer[] nums1 = {1, 2, 3};
         Integer[] nums2 = {3, 4, 5};
 
-        Conjunto<Integer> intConj1 = new Conjunto<>(nums1);
-        Conjunto<Integer> intConj2 = new Conjunto<>(nums2);
+        Conjunto<Integer> intConj1 = new ConjuntoArreglo<>(nums1);
+        Conjunto<Integer> intConj2 = new ConjuntoArreglo<>(nums2);
 
         System.out.println("Unión de enteros:");
         System.out.println(intConj1.union(intConj2));

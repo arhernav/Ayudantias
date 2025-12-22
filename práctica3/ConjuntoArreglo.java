@@ -10,7 +10,7 @@ public class ConjuntoArreglo<T> extends Conjunto<T>{
 
             @Override
             public boolean hasNext() {
-                return indice < cardinalidad;
+                return indice < elementos.length;
             }
 
             @Override
@@ -41,32 +41,100 @@ public class ConjuntoArreglo<T> extends Conjunto<T>{
         }
     }
 
+    /* Determina si el elemento se encuenra en el conjunto
+    * @return boolean - True si el elemento se encuentra en el conjuno. False en otro caso
+    */
     public boolean pertenece(T elemento) {
-        /*Aquí va tu código*/
+        for(T element: this.elementos){
+            if(elemento.equals(element)){
+                return true;
+            }
+        }
+        return false;
     }
 
+    /** Método que agrega un elemento a un conjunto
+     * @param T Elemento - Elemento a agregar al conjunto
+     */
     public void agregarElemento(T elemento) {
-        /*Aquí va tu código*/
+        T[] newarray = (T[]) new Object[this.elementos.length + 1];
+        for (int i = 0; i < this.elementos.length; i ++){
+            if (this.elementos[i].equals(elemento)){
+                return;
+            }
+            newarray[i] = this.elementos[i];
+        }
+        newarray[this.elementos.length] = elemento;
+        this.elementos = newarray;
     }
 
+    /** Método que recibe un conjunto y verifica si es subconjunto de otro
+     * @param Conjunto<T> C - Conjunto a verificar
+     * @return boolean - True en caso de que c sea subconjunto. False en otro caso
+     */
     public boolean contieneConjunto(Conjunto<T> c) {
-        /*Aquí va tu código*/
+        for (T element: c){
+            if(!this.pertenece(element)){
+                return false;
+            }
+        }
+        return true;
     }
 
+    /**
+     * Devuelve la unión de ambos conjuntos
+     * @param Conjunto<T> c - Conjunto a unir
+     * @return Conjunto<T> Unión de ambos conjuntos
+     */
     public Conjunto<T> union(Conjunto<T> c) {
-        /*Aquí va tu código*/
+        Conjunto<T> uni = new ConjuntoArreglo<T>();
+        for (T element: this.elementos){
+            uni.agregarElemento(element);
+        }
+        for (T element: c){
+            uni.agregarElemento(element);
+        }
+        return uni;
     }
 
+    /**
+     * Devuelve la intersección de ambos conjuntos
+     * @param Conjunto<T> c - Conjunto que se usara para obtener la intersección
+     * @return Conjunto<T> - Conjuno conteniendo la intersección de ambos.
+     */
     public Conjunto<T> interseccion(Conjunto<T> c) {
-        /*Aquí va tu código*/
+        Conjunto<T> inter = new ConjuntoArreglo<T>();
+        for(T element: c){
+            if (this.pertenece(element)){
+                inter.agregarElemento(element);
+            }
+        }
+        return inter;
     }
 
+    /**
+     * Determina si dos conjuntos son iguales
+     * @param Conjunto<T> c - Conjunto a comparar
+     * @return boolean - True si ambos conjuntos son iguales. False en otro caso
+     */
     public boolean iguales(Conjunto<T> c) {
-        /*Aquí va tu código*/
+        if (this.elementos.length != c.obtenerCardinalidad()){
+            return false;
+        }
+        for (T element: c){
+            if (!this.pertenece(element)){
+                return false;
+            }
+        }
+        return true;
     }
 
+    /**
+     * Devuelve la cardinalidad del conjunto
+     * @return int - Cardinalidad del conjunto
+     */
     public int obtenerCardinalidad(){
-        /*Aquí va tu código*/
+        return this.elementos.length;
     }
 
 }
