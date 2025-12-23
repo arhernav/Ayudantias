@@ -88,7 +88,12 @@ public class ListaLigadaSimple<T> implements Lista<T> {
      */
     @Override
     public void insertar(T elemento) throws IllegalArgumentException {
-        /*Aquí va tu código*/
+        if(elemento == null){ throw new IllegalArgumentException("El elemento no puede ser null");}
+        Nodo previousHead = this.cabeza;
+        Nodo newNode = new Nodo(elemento);
+        newNode.siguiente = previousHead;
+        this.cabeza = newNode;
+        this.longitud++;
     }
 
     /**
@@ -96,7 +101,12 @@ public class ListaLigadaSimple<T> implements Lista<T> {
      */
     @Override
     public boolean buscar(T elemento) {
-        /*Aquí va tu código*/
+        for(T element: this){
+            if (element == elemento){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -104,7 +114,16 @@ public class ListaLigadaSimple<T> implements Lista<T> {
      */
     @Override
     public T acceder(int i) throws IllegalArgumentException {
-        /*Aquí va tu código*/
+        if(i < 0 || i > this.longitud ){throw new IllegalArgumentException("Indice invalido");}
+        int index = 0;
+        for(T element: this){
+            if(i == index){
+                return element;
+            }else{
+                index++;
+            }
+        }
+        return null;
     }
 
     /**
@@ -112,21 +131,47 @@ public class ListaLigadaSimple<T> implements Lista<T> {
      */
     @Override
     public void eliminar(int i) {
-        /*Aquí va tu código*/
+        if(i == 0){
+            this.cabeza = this.cabeza.siguiente;
+            this.longitud--;
+            return;
+        }
+        Nodo currentNode = this.cabeza;
+        for (int index = 0; index < this.longitud; index++){
+            if (index == i-1){
+                if (currentNode.siguiente.siguiente == null){
+                    currentNode.siguiente = null;
+                }else{
+                    currentNode.siguiente = currentNode.siguiente.siguiente;
+                }
+                this.longitud--;
+            }else{
+                currentNode = currentNode.siguiente;
+            }
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public void eliminar(T elemento){
-        /*Aquí va tu código*/
+        int index = this.devolverIndiceElemento(elemento);
+        this.eliminar(index);
     }
 
     /**
      * {@inheritDoc}
      */
     public int devolverIndiceElemento(T elemento) throws IllegalArgumentException{
-        /*Aquí va tu código*/
+        Nodo currentNode = this.cabeza;
+        for (int i = 0; i < this.longitud; i++){
+            if(currentNode.elemento.equals(elemento)){
+                return i;
+            }else{
+                currentNode = currentNode.siguiente;
+            }
+        }
+        throw new IllegalArgumentException("El elemento no se encuentra en la lista");
     }
 
     /**
@@ -135,7 +180,7 @@ public class ListaLigadaSimple<T> implements Lista<T> {
      * @return La longitud de la lista.
      */
     public int darLongitud() {
-        /*Aquí va tu código*/
+        return this.longitud;
     }
 
     /**
