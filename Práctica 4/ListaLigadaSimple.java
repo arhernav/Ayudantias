@@ -102,7 +102,7 @@ public class ListaLigadaSimple<T> implements Lista<T> {
     @Override
     public boolean buscar(T elemento) {
         for(T element: this){
-            if (element == elemento){
+            if (element.equals(elemento)){
                 return true;
             }
         }
@@ -163,6 +163,7 @@ public class ListaLigadaSimple<T> implements Lista<T> {
      * {@inheritDoc}
      */
     public int devolverIndiceElemento(T elemento) throws IllegalArgumentException{
+        if (elemento == null){throw new IllegalArgumentException("El elemento no se encuentra en la lista");}
         Nodo currentNode = this.cabeza;
         for (int i = 0; i < this.longitud; i++){
             if(currentNode.elemento.equals(elemento)){
@@ -171,7 +172,7 @@ public class ListaLigadaSimple<T> implements Lista<T> {
                 currentNode = currentNode.siguiente;
             }
         }
-        throw new IllegalArgumentException("El elemento no se encuentra en la lista");
+        return -1;
     }
 
     /**

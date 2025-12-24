@@ -28,7 +28,13 @@ public class Historial {
      * @param p la página a agregar
      */
     public void agregarPagina(Pagina p) {
-        /*Aquí va tu código*/
+        for(Pagina page: this.historial){
+            if(page.equals(p)){
+                this.historial.eliminar(page);
+            }
+        }
+        this.historial.insertar(p);
+        
     }
 
     /**

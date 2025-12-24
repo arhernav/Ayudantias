@@ -12,6 +12,7 @@ public class MainLectorPaginas {
         leerArchivo(nombreArchivo, hist);
 
         System.out.println(hist);
+        
     }
 
     /**
@@ -23,14 +24,15 @@ public class MainLectorPaginas {
     public static void leerArchivo(String nombreArchivo, Historial hist) {
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
-
+            Pagina newPage;
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(" : ");
                 String pagina = partes[0].trim();
                 String fecha = partes[1].trim();
 
-                /*Aquí va tu código, puedes resolver el problema en este método o 
-                usar otra forma que creas conveniente*/
+                newPage = new Pagina(pagina,fecha);
+
+                hist.agregarPagina(newPage);
             }
 
         } catch (IOException e) {
