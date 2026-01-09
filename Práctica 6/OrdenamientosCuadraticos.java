@@ -1,23 +1,48 @@
 public class OrdenamientosCuadraticos {
 
     private static <T> void intercambio(T[] arreglo, int i, int j) {
-        /*Aquí va tu código*/
+        T support = arreglo[i];
+        arreglo[i] = arreglo[j];
+        arreglo[j] = support;
     }
 
     private static <T extends Comparable<T>> int encontrarIndiceMenor(T[] arreglo, int i, int j){
-        /*Aquí va tu código*/
+        int lesser = i;
+        for(int current = i; current <= j; current++ ){
+            if(arreglo[current].compareTo(arreglo[lesser]) < 0){
+                lesser = current;
+            }
+        }
+        return lesser;
     }  
 
     public static <T extends Comparable<T>> void selectionSort(T[] arreglo) {
-        /*Aquí va tu código*/
+        for(int i = 0; i < arreglo.length; i ++){
+            int min = encontrarIndiceMenor(arreglo, i, arreglo.length - 1);
+            intercambio(arreglo, i, min);
+        }
     }
 
     public static <T extends Comparable<T>> void bubbleSort(T[] arreglo) {
-        /*Aquí va tu código*/
+        for(int i = 0; i < arreglo.length; i ++){
+            for(int j = 0; j < (arreglo.length - 1 - i); j++){
+                if(arreglo[j].compareTo(arreglo[j+1]) > 0){
+                    intercambio(arreglo, j, j+1);
+                }
+            }
+        }
     }
 
     public static <T extends Comparable<T>> void insertionSort(T[] arreglo) {
-        /*Aquí va tu código*/
+        for(int i = 1; i < arreglo.length; i++){
+            T toInsert = arreglo[i];
+            int j = i - 1; 
+            while(j >= 0 && arreglo[j].compareTo(toInsert) > 0){
+                arreglo[j + 1] = arreglo[j];
+                j = j - 1;
+            }
+            arreglo[j + 1] = toInsert;
+        }
     }
 
     public static <T extends Comparable<T>> void ordenar(int algoritmo, T[] arreglo) {
