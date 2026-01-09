@@ -1,0 +1,5 @@
+### Gitignore para el proyecto
+
+
+# Ignore migrations
+zips/**
