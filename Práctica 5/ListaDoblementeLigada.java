@@ -64,23 +64,64 @@ public class ListaDoblementeLigada<T> implements Lista<T> {
           Nodo newNode = new Nodo(elemento);
           if(this.cabeza == null){
                this.cabeza = this.rabo = newNode;
-               this.longitud += 1;
+               this.longitud +=1;
           }else{
                this.cabeza.anterior = newNode;
                newNode.siguiente = this.cabeza;
                this.cabeza = newNode; 
-               this.longitud += 1;
+               this.longitud +=1;
           }
      }
 
      public void eliminar(T elemento){
-          
+
+          if(this.cabeza == this.rabo){ 
+               this.cabeza = this.rabo = null;
+               this.longitud = 0; 
+          } // only one element
+
+          Nodo currentNode = this.cabeza;
+          for(int i = 0; i < this.longitud; i ++){
+               if(elemento.equals(currentNode.elemento)){
+                    if( currentNode == this.cabeza){
+                         this.eliminarCabeza();
+                    }else if(currentNode == this.rabo){
+                         this.eliminarRabo();
+                    }else{
+                         currentNode.anterior.siguiente = currentNode.siguiente;
+                         currentNode.siguiente.anterior = currentNode.anterior;
+                         this.longitud --;
+                    } 
+               }
+               break;
+          }
+     }
+
+     public void eliminarRabo(){
+          if(this.cabeza == this.rabo){ 
+               this.cabeza = this.rabo = null;
+               this.longitud = 0; 
+          } // only one element
+          this.rabo = this.rabo.anterior;
+          this.rabo.siguiente = null;
+          this.longitud--;
+     }
+
+     public void eliminarCabeza(){
+          if(this.cabeza == this.rabo){ 
+               this.cabeza = this.rabo = null;
+               this.longitud = 0; 
+          } // only one element
+
+          this.cabeza = this.cabeza.siguiente;
+          this.cabeza.anterior = null;
+          this.longitud--;
      }
 
      @Override
      public boolean buscar(T elemento) {
-          for(Nodo node: this){
-               if(node.elemento == elemento){
+          for(T elem: this){
+               if(elem.equals(elemento)){
                     return true;
                }
           }
@@ -119,35 +160,35 @@ public class ListaDoblementeLigada<T> implements Lista<T> {
 
      public void insertarFinal(T elemento) throws IllegalArgumentException {
           if(elemento == null){throw new IllegalArgumentException("No se puede insertar null");}
-          Nodo newNode = new Nodo;
+          Nodo newNode = new Nodo(elemento);
           if( this.cabeza == null){
                this.cabeza = this.rabo = newNode;
                this.longitud +=1;
           }else{
                this.rabo.siguiente = newNode;
                newNode.anterior = this.rabo; 
+               this.rabo = newNode;
                this.longitud +=1;
           }
      }
 
      public ListaDoblementeLigada<T> reversa(){
           ListaDoblementeLigada<T> reversa = new ListaDoblementeLigada<>();
-          if(this.cabeza == null){return reversa}
-          for(Nodo supp: this){
-               reversa.insertar(supp.elemento)
+          if(this.cabeza == null){return reversa;}
+          for(T suppElement: this){
+               reversa.insertar(suppElement);
           }
-          return reversa
+          return reversa;
      }
 
      
      private Nodo accederNodo(int i) throws IllegalArgumentException {
-          if(i < this.longitud || i >= this.longitud){throw new IllegalArgumentException("El indice no se encuentra en la lista");}
-          int middle = this.longitud/ 2;
+          if(i < 0 || i >= this.longitud){throw new IllegalArgumentException("El indice no se encuentra en la lista");}
+          int middle = (this.longitud-1)/ 2;
           Nodo currentNode = null;
           if(i < middle ){
                currentNode = this.cabeza; 
-               int currentIndex = this.longitud/2;
-               for( int j = 0; j <= middle, j++){
+               for( int j = 0; j <= middle; j++){
                     if(j == i){
                          return currentNode;
                     }else{
@@ -156,8 +197,7 @@ public class ListaDoblementeLigada<T> implements Lista<T> {
                }
           }else{
                currentNode = this.rabo; 
-               int currentIndex = this.longitud;
-               for( int j = this.longitud; j >= middle, j--){
+               for( int j = this.longitud-1; j >= middle; j--){
                     if(j == i){
                          return currentNode;
                     }else{
