@@ -12,7 +12,7 @@ public class MainOrdenamientos2 {
         System.out.println("\nArreglo original: " + arregloToString(arreglo));
 
         // Ordenar arreglo con bucketSort
-        OrdenamientosNoCuadraticos.bucketSort(arreglo);
+        OrdenamientosNoCuadraticos.countingSort(arreglo);
         System.out.println("Arreglo ordenado (bucketSort): " + arregloToString(arreglo));
 
         // Generar lista aleatoria con 10 elementos (valores entre 0 y 99)
