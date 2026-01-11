@@ -10,7 +10,7 @@ public class Pila<T> implements PiCoLa<T> {
         }
     }
 
-    private Nodo tope;
+    protected Nodo tope;
     private int tamanio;
 
     public Pila() {
@@ -20,8 +20,8 @@ public class Pila<T> implements PiCoLa<T> {
 
     @Override
     public void meter(T elemento) {
-        Nodo newNode = new Nodo(element);
-        n.siguiente = this.tope;
+        Nodo newNode = new Nodo(elemento);
+        newNode.siguiente = this.tope;
         this.tope = newNode;
         this.tamanio++;
     }

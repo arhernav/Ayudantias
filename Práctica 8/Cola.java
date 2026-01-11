@@ -10,13 +10,13 @@ public class Cola<T> implements PiCoLa<T> {
         }
     }
 
-    private Nodo tope;
-    private Nodo rabo;
+    public Nodo tope;
+    public Nodo rabo;
     private int tamanio;
 
-    @meter
+    @Override
     public void meter(T elemento){
-        Nodo newNode = new Nodo(elemento)
+        Nodo newNode = new Nodo(elemento);
         if(this.rabo == null){
             this.tope = this.rabo = newNode;
         }else{
@@ -57,7 +57,7 @@ public class Cola<T> implements PiCoLa<T> {
         if (o == null || getClass() != o.getClass()){
             return false;
         }
-        @SuppressWarnings("unchecked") Pila<T> m = (Pila<T>)o;
+        @SuppressWarnings("unchecked") Cola<T> m = (Cola<T>)o;
         Nodo n1 = this.tope;
         Nodo n2 = m.tope;
         while (n1 !=null && n2 != null){
