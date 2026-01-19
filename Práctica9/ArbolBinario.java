@@ -53,15 +53,15 @@ public abstract class ArbolBinario<T> implements Coleccion<T> {
     public abstract boolean buscar(T elemento);
 
     public T acceder(int indice) {
-        /*Aqui va tu codigo*/
+        return this.devolverRecorrido().acceder(indice);
     }
 
     public int devolverTamanio() {
-        /*Aqui va tu codigo*/
+        return this.tamanio;
     }
 
     public boolean estaVacio() {
-        /*Aqui va tu codigo*/
+        return this.raiz == null;
     }
 
     @Override
