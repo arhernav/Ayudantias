@@ -85,8 +85,14 @@ public class ArbolBinarioOrdenado<T extends Comparable<T>> extends ArbolBinario<
             support.elemento = e;
             this.eliminar(this.raiz, elemento);
         }
-        this.eliminar(v.izquierdo, elemento);
-        this.eliminar(v.derecho, elemento);
+
+        if(elemento.compareTo(v.elemento) >= 0){
+            this.eliminar(v.derecho, elemento);
+        }else{
+            this.eliminar(v.izquierdo, elemento);
+        }
+        
+        
     }
     
     private Vertice devolverMinimo(Vertice v) {
